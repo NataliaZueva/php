@@ -1,0 +1,28 @@
+.multi_table td {
+    border: 1px solid gray;
+    border-collapse: collapse;
+    width: 2rem;
+    height: 2rem;
+    font-weight: 700;
+}
+
+.multi_table {
+    border: 1px solid gray;
+    border: 0;
+    text-align: center;
+    width: 350;
+    border-collapse: collapse;
+    background-color: #cddada;
+}
+
+
+.heading_td {
+    background-color: #abcccf;
+}
+.null_td {
+    background-color: #848f8e;
+}
+.same_td {
+    background-color: #618a8a;
+}
+
