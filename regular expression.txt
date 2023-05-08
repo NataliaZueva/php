@@ -1,0 +1,113 @@
+Упражнение 1
+
+1 /^[0-9]+$/
+2 /^[a-zA-Z0-9]+$/
+3 /^[a-zA-Zа-яА-Я0-9]+$/
+4 /^[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/
+5 /^[a-zA-Z][a-zA-Z0-9]{2,24}$/
+6 /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/
+7 /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+8 /^\d{4}-\d{2}-\d{2}$/
+9 /^\d{2}\/\d{2}\/\d{4}$/
+10 /^\d{2}\.\d{2}\.\d{4}$/
+11 /^([01]\d|2[0-3]):([0-5]\d):([0-5]\d)$/
+12 /^([01]\d|2[0-3]):([0-5]\d)$/
+13 /^(http(s)?:\/\/)?(www)?[a-zA-Z0-9]+\.[a-zA-Z]{2,}/
+14 /^(?:[a-z0-9]+(?:[-_.]?[a-z0-9]+)?@[a-z0-9_.-]+(?:\.?[a-z0-9]+)?\.[a-z]{2,5})$/
+15 /^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
+16 /^([0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4}$/i 
+17 /^(([a-f\d]{2}\:){5}[a-f\d]{2})$/i 
+18 /^\+7\d{10}$/
+19 /^4\d{3}([\ \-]?\d{4}){3}$/
+20 /^(?\d{10}|\d{12})$/
+21 /^[0-9]{6}$/
+22 /^\d+(\,\d{1,2})?\sруб\.$/
+23 /^\$\d+(\.\d{1,2})?$/
+
+
+Упражнение 2
+
+1. Из имени файла (например, picture.jpg) получите его расширение (например, jpg)
+
+function getFileExtension($filename) {
+  $extension = pathinfo($filename, PATHINFO_EXTENSION);
+  return $extension;
+}
+
+2. По имени файла проверьте соответствует ли оно: а) архиву, б) аудиофайлу, в) видеофайлу, г) картинке
+
+function checkFileType($filename) {
+  $extension = getFileExtension($filename);
+  switch ($extension) {
+    case 'zip':
+    case 'rar':
+    case '7z':
+    case 'gz':
+    case 'jar':
+      return 'archive';
+    case 'mp3':
+    case 'wav':
+    case 'ogg':
+    case 'aiff':
+    case 'flac':
+      return 'audio';
+    case 'mp4':
+    case 'avi':
+    case 'mov':
+    case 'flv':
+      return 'video';
+    case 'jpg':
+    case 'png':
+    case 'gif':
+      return 'image';
+    default:
+      return 'unknown';
+  }
+}
+
+3. В произвольном HTML-коде найдите строку, заключенную в теги <title></title>
+
+function getTitle($html) {
+  preg_match('/<title>(.*?)<\/title>/', $html, $matches);
+  return isset($matches[1]) ? $matches[1] : '';
+}
+
+4. В произвольном HTML-коде найдите все ссылки в тегах <a> (атрибут href)
+
+function getLinks($html) {
+  preg_match_all('/<a[^>]+href=([\'"])(.*?)\1/i', $html, $matches);
+  return isset($matches[2]) ? $matches[2] : [];
+}
+
+5. В произвольном HTML-коде найдите все ссылки на картинки в тегах <img> (атрибут src)
+
+function getImageLinks($html) {
+  preg_match_all('/<img[^>]+src=([\'"])(.*?)\1/i', $html, $matches);
+  return isset($matches[2]) ? $matches[2] : [];
+}
+
+6. В произвольном тексте найдите и подсветите с помощью тега <strong> заданную строку
+
+function highlightString($string, $search) {
+  return preg_replace('/(' . preg_quote($search, '/') . ')/i', '<strong>$1</strong>', $string);
+}
+
+7. В произвольном тексте найдите определенный набор текстовых смайликов :), ;), :(на соответствующие им картинки <img src="smile.png" alt=":)">, <img src="wink.png" alt=";)">, <img src="sad.png" alt=":(">
+
+function replaceSmilies($string) {
+  $smilies = [
+    ':)' => 'smile.png',
+    ';)' => 'wink.png',
+    ':(' => 'sad.png'
+  ];
+  foreach ($smilies as $smiley => $image) {
+    $string = str_replace($smiley, '<img src="' . $image . '" alt="' . $smiley . '">', $string);
+  }
+  return $string;
+}
+
+8. В заданной строке избавьтесь от случайных повторяющихся пробелов.
+
+function removeExtraSpaces($string) {
+  return preg_replace('/\s+/', ' ', $string);
+}
