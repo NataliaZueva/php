@@ -45,17 +45,6 @@
 				</select>
 				<br>
 
-
-
-				<!-- 
-
-					<label for="Sure"> Согласшаюсь на рассылку о конференции</label>
-					<input class="form-control" type="checkbox" name="mailing" id="Sure" checked required><br>
-
-					<label for="Sure2">Подтверждаю обработку данных</label>
-					<input class="form-control" type="checkbox" name="processing" id="Sure2" checked required><br> -->
-
-
 				<input type="submit" value="Отправить данные" />
 			</form>
 		</div>

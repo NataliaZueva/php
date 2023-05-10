@@ -32,9 +32,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		}
 	} else {
 		$uni = time() . '_' . substr($name, 0, 4);
-		$data = $uni . ', ' . $name . ', ' . $lastname . ', ' .  $email . ', ' . $phone . ', ' . $topic . ', ' . $payment . "\n";
+
 		$filename = "forms/response/" . $uni;
-		file_put_contents($filename, $data, FILE_APPEND);
+		$items = [
+			"name" => $name,
+			"lastname" => $lastname,
+			"email" => $email,
+			"phone" => $phone,
+			"topic" => $topic,
+			"payment" => $payment
+		];
+
+		$json = json_encode($items);
+
+		file_put_contents($filename, $json, FILE_APPEND);
 
 		$message = "Ваш уникальный номер: $uni";
 		echo $message;

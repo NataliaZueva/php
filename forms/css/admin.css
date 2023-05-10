@@ -1,33 +1,21 @@
-body{
-    background-color: rgb(250, 201, 128);
-}
-
 .outer{
     display: flex;
     justify-content: center;
 }
-
 .inner{
 	width: 50%;
 	font-family: sans-serif;
     margin-top: 5%;
 }
 .list{
-    background-color: rgb(205, 213, 255);
-    border: 6px ridge rgba(47, 83, 245, 0.6);
-    padding: 5px;
+    background-color: #efe9e1;
+    border: 6px ridge #3c5f51;
+    padding: 10px;
 }
-.list_lable{
-	font-family: sans-serif;
-    font-weight: bold;
-    font-size: larger;
-    text-align: center;
-}
-
 .row {
     display: inline-block;
     border: 2px solid black;
-    margin: 1px;
+    margin: 3px;
 }
 .checkbox_row {
     display: inline-block;
@@ -35,3 +23,10 @@ body{
     width: 15px;
     height: 15px;
 }
+.list_lable {
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: larger;
+    text-align: center;
+}
+
