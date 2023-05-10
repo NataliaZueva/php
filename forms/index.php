@@ -13,7 +13,7 @@
 				<h1>Форма регистрации на конференцию</h1>
 			</span>
 
-			<form action="php/submit-form.php" method="POST">
+			<form action="php/submit-form2.php" method="POST">
 				<label for="Name">Имя:<br></label>
 				<input type="txt" class="form-control" name="name" value="<?= htmlspecialchars($_POST["name"] ?? "") ?>" placeholder="Введите имя" required><br>
 
@@ -30,9 +30,9 @@
 
 				<label for="topic">Выберите интересующую тематику:</label>
 				<select id="topic" name="topic">
-					<option value="webmoney">Бизнес</option>
-					<option value="yandex">Технологии</option>
-					<option value="paypal">Реклама и Маркетинг</option>
+					<option value="Business">Бизнес</option>
+					<option value="Technologies">Технологии</option>
+					<option value="Advertisement">Реклама и Маркетинг</option>
 				</select>
 				<br>
 

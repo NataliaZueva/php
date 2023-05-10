@@ -29,4 +29,6 @@
     font-size: larger;
     text-align: center;
 }
-
+tr {
+    border-bottom: 1px solid black;
+}
