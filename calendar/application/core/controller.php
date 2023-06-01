@@ -9,8 +9,8 @@ abstract class Controller
 
     public $route;
     public $view;
-    // public $acl;
     public $model;
+    // public $acl;
 
     public function __construct($route)
     {

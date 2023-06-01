@@ -2,7 +2,7 @@
 
 return [
     'host' => 'localhost',
-    'name' => 'to-do',
+    'name' => 'to_do',
     'user' => 'root',
-    'password' => '',
+    'password' => 'Nata@12012003',
 ];

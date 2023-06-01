@@ -12,7 +12,7 @@
 	<div class="container new">
 		<h1>Мой календарь</h1>
 
-		<form method="post" action="">
+		<form method="post" action="appliation/controllers/FormController.php">
 			<legend>Новая задача</legend>
 			<fieldset>
 				<label for="subject">Тема:</label>
@@ -43,63 +43,54 @@
 		</form>
 	</div>
 
+
+
+
+
 	<div class='container list'>
-		<h1>Список задач</h1>
+		<h3>Список задач</h3>
 
-		<!--
-            <table name="export_table">
-                <tr>
-                    <th>Тема</th>
-                    <th>Тип</th>
-                    <th>Место</th>
-                    <th>Дата и время</th>
-                    <th>Длительность</th>
-                    <th>Комментарий</th>
-                </tr>
-                <tr>
-                    <td name="subject_list">. </td>
-                    <td name="type_list">. </td>
-                    <td name="location_list">. </td>
-                    <td name="datetime_list">. </td>
-                    <td name="duration_list">. </td>
-					<td name="comment_list">. </td>
-                </tr>
-            </table>
--->
-		<?php
-		$hostname = "localhost";
-		$db = "to-do";
-		$username = "root";
-		$password = "";
+		<table name="export_table">
+			<tr>
+				<th>Тип</th>
+				<th>Задача</th>
+				<th>Место</th>
+				<th>Дата и время</th>
+			</tr>
+			<!-- </table> -->
 
-		$conn = new PDO(
-			"mysql:host=localhost;dbname=$db",
-			$username,
-			$password
-		);
+			<?php foreach ($task as $val) : ?>
 
-		$sql1 = "SELECT subject, type, location, datetime, duration, comment FROM task_list";
+				<?php
+				$datetime = $val["datetime"];
 
-		if ($result = $conn->query($sql1)) {
+				$e = explode(" ", $datetime);
+				$d = explode("-", $e[0]);
+				$t = explode(":", $e[1]);
+				$timestamp = mktime($t[0], $t[1], $t[2], $d[1], $d[2], $d[0]);
 
+				$date = date('d/m/Y H:i', $timestamp);
+				$time = date('H:i', $timestamp);
 
-			echo "<table cellspacing='0' cellpadding='0'><tr><th>Тип</th><th class ='task_list'>Задача</th><th>Место</th><th>Дата и время</th></tr>";
-			foreach ($result as $row) {
-				if ($row["datetime"] < 2025 - 05 - 25) {
-					echo "<tr bgcolor=red>";
+				$time = time();
+				$time += 8 * 3600;
+				if ($date < date("d/m/Y H:i", $time)) {
+					echo "<tr bgcolor=CadetBlue>";
 				} else {
 					echo "<tr>";
 				}
-				echo "<td>" . $row["subject"] . "</td>";
-				echo "<td>" . $row["type"] . "</td>";
-				echo "<td>" . $row["location"] . "</td>";
-				echo "<td>" . $row["datetime"] . "</td>";
-			}
-			echo "</table>";
-		} else {
-			echo "<p> Ошибка вывода данных";
-		}
-		?>
+				?>
+
+				<td><?php echo $val['type']; ?></td>
+				<td><?php echo $val['subject']; ?></td>
+				<td><?php echo $val['location']; ?></td>
+				<td><?php echo $date; ?></td>
+				</tr>
+			<?php endforeach; ?>
+		</table>
+
+
+
 	</div>
 </body>
 

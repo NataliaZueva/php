@@ -2,7 +2,7 @@
 body{
     background-color: #EFF0F3!important;
 }
-h1 {
+h1, h3 {
     margin-left: 20px;
     text-align: left;
 }

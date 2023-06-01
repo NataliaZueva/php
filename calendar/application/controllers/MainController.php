@@ -4,19 +4,15 @@ namespace application\controllers;
 
 use application\core\Controller;
 
-use application\lib\Db;
-
 class MainController extends Controller
 {
 
     public function indexAction()
     {
         $result = $this->model->getNews();
-
-        $this->view->render('Главная страница');
         $vars = [
-            'news' => $result,
+            'task' => $result,
         ];
-        $this->view->render('Главная страница', $vars);
+        $this->view->render('Мой календарь', $vars);
     }
 }
